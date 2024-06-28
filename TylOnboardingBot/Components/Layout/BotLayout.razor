@@ -1,5 +1,39 @@
-﻿<h3>BotLayout</h3>
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @bind-IsDarkMode="_isDarkMode" Theme="_currentTheme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudContainer MaxWidth="MaxWidth.Large">
+            <div class="d-flex align-center" Elevation="1">
+                <a class="mt-2" href="/">
+                    <MudImage Src="/img/logo.jpg" Width="70" Height="45" ObjectFit="ObjectFit.Cover" Elevation="2" Class="rounded-lg"/>
+                </a>
+                <MudSpacer/>
+                @* <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true"> *@
+                @*     <MudTooltip Text="Toggle Light/Dark Mode" Color="Color.Primary" Placement="Placement.Right"> *@
+                @*         <MudToggleIconButton ToggledChanged="() => SetPreference()" Class="ml-2 flex-none" Icon="@Icons.Material.Filled.LightMode" ToggledIcon="@Icons.Material.Filled.DarkMode"></MudToggleIconButton> *@
+                @*     </MudTooltip> *@
+                @* </MudHidden> *@
+            </div>
+        </MudContainer>
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large">
+            <ErrorBoundary>
+                <ChildContent> @Body </ChildContent>
+                <ErrorContent Context="Exception">
+                    <MudChip Color="Color.Secondary">@Exception.GetType()</MudChip>
+                    <MudChip Color="Color.Secondary">@Exception.Message</MudChip>
+                    <p class="errorUI">Nothing to see here right now. Sorry!</p>
+                </ErrorContent>
+            </ErrorBoundary>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
 
 @code {
-    
+
 }

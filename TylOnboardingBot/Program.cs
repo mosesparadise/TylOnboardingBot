@@ -1,10 +1,28 @@
+using MudBlazor.Services;
 using TylOnboardingBot.Components;
+using TylOnboardingBot.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents()
+builder
+    .Services
+    .AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder
+    .Services
+    .AddMudServices()
+    // .AddScoped<IOnboardingServiceClient, NullOnboardingServiceClient>()
+    .AddHttpClient<IOnboardingServiceClient, OnboardingServiceClient>((sp, client) =>
+    {
+        var configuration = sp.GetRequiredService<IConfiguration>();
+        var baseUri = configuration["OnboardingService:BaseUrl"];
+        if (string.IsNullOrWhiteSpace(baseUri))
+            throw new InvalidOperationException("OnboardingService:BaseUrl is required.");
+        client.BaseAddress = new Uri(baseUri);
+    })
+    ;
 
 var app = builder.Build();
 
@@ -24,4 +42,4 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
-app.Run();
+await app.RunAsync();

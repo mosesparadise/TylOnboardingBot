@@ -1,4 +1,4 @@
-﻿namespace ChatConsole.Model;
+﻿namespace TylOnboardingBot.Models.Results;
 
 public class Result
 {

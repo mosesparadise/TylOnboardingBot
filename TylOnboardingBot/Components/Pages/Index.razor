@@ -1,6 +1,18 @@
-﻿@page "/Index"
-<h3>Index</h3>
+﻿@page "/"
+
+<PageTitle>Ask TylBot</PageTitle>
+@* <MudText Class="my-auto" Typo="Typo.caption" GutterBottom="true" Style="font-size: 30px;">Ask TylBot</MudText> *@
+<div class="mt-5">
+    @if (!CanShowRecommendation)
+    {
+        <OnboardingComponent OnRequestSubmitted="HandleOnboardingRequestSubmitted"/>
+    }
+    else
+    {
+        <ShowRecommendation OnboardingEventArgs="_onboardingEventArgs"/>
+    }
+</div>
 
 @code {
-    
+
 }

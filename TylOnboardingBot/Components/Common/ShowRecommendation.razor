@@ -1,5 +1,28 @@
-﻿<h3>ShowRecommendation</h3>
+﻿<div class="container">
+    <MudGrid Spacing="1" Class="mt-5">
+        <MudItem xs="12" Style="color: #4B0082;">
+            <MudText Typo="Typo.h4">Recommended Products</MudText>
+            <MudText Typo="Typo.body2">Based on your responses, we recommend the following products:</MudText>
+        </MudItem>
+        <MudItem xs="12" Class="mt-2">
+            <MudTable Items="_products" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+                <HeaderContent>
+                    <MudTh>Product Name</MudTh>
+                    <MudTh>Suitability</MudTh>
+                    <MudTh>Criteria</MudTh>
+                    <MudTh>Payment Type</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Nr">@context.Name</MudTd>
+                    <MudTd DataLabel="Sign">@context.Suitability</MudTd>
+                    <MudTd DataLabel="Name">@context.Criteria</MudTd>
+                    <MudTd DataLabel="Molar mass">@context.PaymentType</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudItem>
+    </MudGrid>
+</div>
 
 @code {
-    
+
 }

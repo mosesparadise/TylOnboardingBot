@@ -1,5 +1,99 @@
-﻿<h3>OnboardingComponent</h3>
+﻿<style>
+    ul {
+        list-style-type: square;
+        margin-top: 5px;
+    }
+
+    li {
+
+    }
+</style>
+<div class="container">
+    <div class="left">
+        <h1>Take payments with Tyl by Natwest</h1>
+        <p>To be eligible for Tyl:</p>
+        <ul>
+            <li>you must be 18 and over</li>
+            <li>your business must be based and trading in the UK</li>
+            <li>you must own or be a director of this company</li>
+        </ul>
+        <div>
+            <a href="#" class="button">Terms and conditions</a>
+            <a href="#" class="button">Privacy policy</a>
+            <a href="#" class="button">Cookie preferences</a>
+        </div>
+    </div>
+    <div class="right">
+        <EditForm Model="@_formRequest" OnValidSubmit="SubmitAsync">
+            <DataAnnotationsValidator/>
+            <h2>Let's get started</h2>
+            <p>We need the below information to get you up and running</p>
+            <MudGrid Spacing="1" Class="mt-5">
+                <MudItem xs="12">
+                    <MudText>Do you bank with Natwest?</MudText>
+                    <MudRadioGroup @bind-Value="_formRequest.BankCustomer">
+                        <MudRadio Value="true" Color="Color.Primary">Yes</MudRadio>
+                        <MudRadio Value="false" Color="Color.Secondary">No</MudRadio>
+                    </MudRadioGroup>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudText>Business Name</MudText>
+                    <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="_formRequest.BusinessName"
+                                  For="@(() => _formRequest.BusinessName)" Margin="Margin.Normal"/>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudText>Company registration number</MudText>
+                    <MudTextField T="string" Variant="Variant.Outlined"
+                                  @bind-Value="_formRequest.BusinessRegistrationNumber"
+                                  For="@(() => _formRequest.BusinessRegistrationNumber)" Margin="Margin.Normal"/>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudText>Annual Turnover</MudText>
+                    <MudNumericField Variant="Variant.Outlined" Culture="@_englishCulture"
+                                     @bind-Value="_formRequest.AnnualTurnOver"
+                                     For="@(() => _formRequest.AnnualTurnOver)" Format="N2" Margin="Margin.Normal"
+                                     HideSpinButtons="true"/>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudText>Website</MudText>
+                    <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="_formRequest.Website"
+                                  For="@(() => _formRequest.Website)" Margin="Margin.Normal"/>
+                </MudItem>
+                <MudItem xs="12" Class="d-flex justify-center">
+                    @if (!_isSubmitting)
+                    {
+                    <MudButton ButtonType="ButtonType.Submit" Disabled="_isSubmitting" Variant="Variant.Filled"
+                               Color="Color.Secondary" Size="Size.Large" StartIcon="@Icons.Material.Filled.Login"
+                               Style="width: 100%;" Class="button">
+                        Submit
+                    </MudButton>
+                    }
+                    else
+                    {
+                    <MudProgressCircular Color="Color.Secondary" Size="Size.Large" Indeterminate="true"/>
+                    }
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+
+        @* <form> *@
+        @*     <label for="bank">Do you Bank with Natwest?</label><br> *@
+        @*     <input type="text" id="bank" name="bank" placeholder="Yes / No"><br> *@
+        @*     <label for="business_name">Business Name</label><br> *@
+        @*     <input type="text" id="business_name" name="business_name"><br> *@
+        @*     <label for="company_number">Company registration number</label><br> *@
+        @*     <input type="text" id="company_number" name="company_number"><br> *@
+        @*     <label for="website">Website</label><br> *@
+        @*     <input type="text" id="website" name="website"><br> *@
+        @*     <label for="mcc">MCC mapping</label><br> *@
+        @*     <input type="text" id="mcc" name="mcc"><br> *@
+        @*     <label for="statement">Already taking card payments – upload your statement here</label><br> *@
+        @*     <input type="file" id="statement" name="statement"><br> *@
+        @*     <button type="submit" class="button">Submit</button> *@
+        @* </form> *@
+    </div>
+</div>
 
 @code {
-    
+
 }

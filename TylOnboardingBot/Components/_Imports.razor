@@ -8,3 +8,11 @@
 @using Microsoft.JSInterop
 @using TylOnboardingBot
 @using TylOnboardingBot.Components
+@using TylOnboardingBot.Components.Common
+
+@using MudBlazor
+@using TylOnboardingBot.Services
+
+@inject ISnackbar Snackbar
+@inject  IOnboardingServiceClient OnboardingServiceClient
+@inject IDialogService DialogService
